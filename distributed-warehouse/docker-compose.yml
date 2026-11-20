@@ -1,0 +1,60 @@
+name: ems-distributed-warehouse
+
+services:
+  worker-1:
+    image: citusdata/citus:14.2.0
+    environment: &postgres-auth
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ems_local_only}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - worker_1_data:/var/lib/postgresql
+      - ./sql/init/00-create-citus.sql:/docker-entrypoint-initdb.d/00-create-citus.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  worker-2:
+    image: citusdata/citus:14.2.0
+    environment: *postgres-auth
+    volumes:
+      - worker_2_data:/var/lib/postgresql
+      - ./sql/init/00-create-citus.sql:/docker-entrypoint-initdb.d/00-create-citus.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  coordinator:
+    image: citusdata/citus:14.2.0
+    environment: *postgres-auth
+    ports:
+      - "127.0.0.1:${COORDINATOR_PORT:-55432}:5432"
+    volumes:
+      - coordinator_data:/var/lib/postgresql
+      - ./sql/init/00-create-citus.sql:/docker-entrypoint-initdb.d/00-create-citus.sql:ro
+      - ./sql/init/01-register-workers.sql:/docker-entrypoint-initdb.d/01-register-workers.sql:ro
+      - ./sql/init/02-schema.sql:/docker-entrypoint-initdb.d/02-schema.sql:ro
+      - ./sql:/opt/ems/sql:ro
+      - ../data/source:/opt/ems/source:ro
+    depends_on:
+      worker-1:
+        condition: service_healthy
+      worker-2:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  coordinator_data:
+  worker_1_data:
+  worker_2_data:
