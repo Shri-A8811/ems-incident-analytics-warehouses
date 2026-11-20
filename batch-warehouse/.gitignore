@@ -1,0 +1,9 @@
+.env
+data/raw/
+data/curated/
+data/postgres/
+data/warehouse/*.sqlite
+dashboards/**/.pbi/cache.abf
+__pycache__/
+*.py[cod]
+**/.pbi/

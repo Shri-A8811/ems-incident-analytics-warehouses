@@ -1,10 +1,9 @@
 # EMS Incident Analytics Warehouses
 
-This workspace contains two new, independent warehouses built from the FDNY EMS Incident Dispatch dataset. The existing traditional warehouse is not part of this workspace and remains unchanged.
+This repository contains three implementations built from FDNY EMS Incident Dispatch data:
 
-## Build order
+1. `batch-warehouse/` — the traditional Dockerized PostgreSQL warehouse, with ETL, OLAP queries, and Power BI/browser dashboards.
+2. `distributed-warehouse/` — a local Citus coordinator with two workers.
+3. `realtime-warehouse/` — Kafka, Spark Structured Streaming, ClickHouse, and Grafana using a paced replay.
 
-1. `distributed-warehouse/` — local Citus coordinator with two workers. Built and integration-checked against the source snapshot.
-2. `realtime-warehouse/` — Kafka, Spark Structured Streaming, ClickHouse, and Grafana with a paced replay of the same source CSV. Built and checked after the distributed warehouse.
-
-The shared source snapshot is in `data/source/`. Each warehouse will keep its own code, tests, run instructions, and documentation.
+Each warehouse has separate code, run instructions, and documentation. The batch warehouse's raw/curated source files and local database files are intentionally excluded from Git because of their size. Follow `batch-warehouse/docs/dataset_source.md` and `batch-warehouse/README.md` to obtain and prepare the data locally. Credentials belong in a local `.env` file and must not be committed.

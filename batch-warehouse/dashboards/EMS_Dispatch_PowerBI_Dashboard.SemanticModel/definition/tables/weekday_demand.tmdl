@@ -1,0 +1,41 @@
+table weekday_demand
+	lineageTag: adffd273-d7c4-4925-ac77-3c6de957ae0e
+
+	column day_of_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: e52a5daf-2017-4c06-9969-5ddc872d5019
+		summarizeBy: none
+		sourceColumn: day_of_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: 9143d615-87ad-4298-b48b-3f9b0bad59da
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column incidents
+		dataType: int64
+		formatString: 0
+		lineageTag: d2d345db-d1eb-404a-bc35-9fd8bf21ac77
+		summarizeBy: none
+		sourceColumn: incidents
+
+		annotation SummarizationSetBy = Automatic
+
+	partition weekday_demand = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\EDA Project\dashboards\weekday_demand.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"day_of_week_number", Int64.Type}, {"day_name", type text}, {"incidents", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

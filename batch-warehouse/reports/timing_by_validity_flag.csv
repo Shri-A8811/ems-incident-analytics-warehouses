@@ -1,0 +1,4 @@
+field,validity_flag,count,mean_seconds,median_seconds,minimum_seconds,maximum_seconds,variance_sample,stddev_sample,q1,q3,iqr,skewness,kurtosis_excess,negative_count,zero_count,upper_iqr_outlier_count,upper_iqr_threshold
+dispatch_response_seconds_qy,Y,3936950,346.00271275987757,31.0,0.0,32390.0,1789257.403504853,1337.6312658968664,14.0,94.0,80.0,9.06980001311789,118.62071556933468,0,36058,644575,214.0
+dispatch_response_seconds_qy,N,98709,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,98709,0,0.0
+incident_response_seconds_qy,Y,3773175,976.4796318750124,571.0,0.0,32396.0,2416762.31316139,1554.5939383521954,381.0,937.0,556.0,7.0510400997640925,75.28385738010998,0,36057,393796,1771.0

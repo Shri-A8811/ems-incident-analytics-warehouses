@@ -1,0 +1,1097 @@
+{
+  "rows": 4035659,
+  "files": 9,
+  "source_fields": [
+    "incident_id",
+    "incident_datetime",
+    "initial_call_type",
+    "initial_severity_level_code",
+    "final_call_type",
+    "final_severity_level_code",
+    "first_assignment_datetime",
+    "valid_dispatch_rspns_time_indc",
+    "dispatch_response_seconds_qy",
+    "first_activation_datetime",
+    "first_on_scene_datetime",
+    "valid_incident_rspns_time_indc",
+    "incident_response_seconds_qy",
+    "incident_travel_tm_seconds_qy",
+    "first_to_hosp_datetime",
+    "first_hosp_arrival_datetime",
+    "incident_close_datetime",
+    "held_indicator",
+    "incident_disposition_code",
+    "borough",
+    "incident_dispatch_area",
+    "zipcode",
+    "policeprecinct",
+    "citycouncildistrict",
+    "communitydistrict",
+    "communityschooldistrict",
+    "congressionaldistrict",
+    "reopen_indicator",
+    "special_event_indicator",
+    "standby_indicator",
+    "transfer_indicator"
+  ],
+  "missing_values": {
+    "citycouncildistrict": {
+      "count": 54619,
+      "percent": 1.3534096909575364
+    },
+    "communitydistrict": {
+      "count": 54622,
+      "percent": 1.3534840282590772
+    },
+    "communityschooldistrict": {
+      "count": 57579,
+      "percent": 1.426755828478075
+    },
+    "congressionaldistrict": {
+      "count": 54619,
+      "percent": 1.3534096909575364
+    },
+    "first_activation_datetime": {
+      "count": 106099,
+      "percent": 2.6290377854025824
+    },
+    "first_assignment_datetime": {
+      "count": 97784,
+      "percent": 2.422999564631204
+    },
+    "first_hosp_arrival_datetime": {
+      "count": 1603431,
+      "percent": 39.73157791577534
+    },
+    "first_on_scene_datetime": {
+      "count": 261338,
+      "percent": 6.475720570048163
+    },
+    "first_to_hosp_datetime": {
+      "count": 1592750,
+      "percent": 39.46691234318856
+    },
+    "incident_close_datetime": {
+      "count": 797,
+      "percent": 0.01974894310941534
+    },
+    "incident_response_seconds_qy": {
+      "count": 262484,
+      "percent": 6.5041174192368585
+    },
+    "incident_travel_tm_seconds_qy": {
+      "count": 261397,
+      "percent": 6.477182536978471
+    },
+    "policeprecinct": {
+      "count": 54619,
+      "percent": 1.3534096909575364
+    },
+    "zipcode": {
+      "count": 54747,
+      "percent": 1.3565814158232892
+    }
+  },
+  "exact_duplicate_rows": 0,
+  "logical_duplicate_incident_ids": 0,
+  "duplicate_note": "An incident_id repeated within or across pages is counted as a logical duplicate. Exact row duplicates are subsumed by this key check because incident_id is part of every full record; no repeated IDs were found.",
+  "timestamp_order_checks": {
+    "incident_datetime -> first_assignment_datetime": {
+      "comparable_rows": 3937875,
+      "out_of_order_rows": 15
+    },
+    "first_assignment_datetime -> first_activation_datetime": {
+      "comparable_rows": 3929560,
+      "out_of_order_rows": 11
+    },
+    "first_activation_datetime -> first_on_scene_datetime": {
+      "comparable_rows": 3771118,
+      "out_of_order_rows": 14039
+    },
+    "first_on_scene_datetime -> first_to_hosp_datetime": {
+      "comparable_rows": 2393985,
+      "out_of_order_rows": 756
+    },
+    "first_to_hosp_datetime -> first_hosp_arrival_datetime": {
+      "comparable_rows": 2432228,
+      "out_of_order_rows": 1
+    },
+    "first_hosp_arrival_datetime -> incident_close_datetime": {
+      "comparable_rows": 2432080,
+      "out_of_order_rows": 120
+    }
+  },
+  "rows_with_any_timestamp_order_issue": 14941,
+  "invalid_nonblank_timestamp_values": {
+    "incident_datetime": 0,
+    "first_assignment_datetime": 0,
+    "first_activation_datetime": 0,
+    "first_on_scene_datetime": 0,
+    "first_to_hosp_datetime": 0,
+    "first_hosp_arrival_datetime": 0,
+    "incident_close_datetime": 0
+  },
+  "invalid_nonblank_numeric_values": {
+    "dispatch_response_seconds_qy": 0,
+    "incident_response_seconds_qy": 0,
+    "incident_travel_tm_seconds_qy": 0,
+    "policeprecinct": 0,
+    "citycouncildistrict": 0,
+    "communitydistrict": 0,
+    "communityschooldistrict": 0,
+    "congressionaldistrict": 0
+  },
+  "negative_numeric_counts": {
+    "dispatch_response_seconds_qy": 0,
+    "incident_response_seconds_qy": 0,
+    "incident_travel_tm_seconds_qy": 0,
+    "policeprecinct": 0,
+    "citycouncildistrict": 0,
+    "communitydistrict": 0,
+    "communityschooldistrict": 0,
+    "congressionaldistrict": 0
+  },
+  "zero_numeric_counts": {
+    "dispatch_response_seconds_qy": 134767,
+    "incident_response_seconds_qy": 36057,
+    "incident_travel_tm_seconds_qy": 44985,
+    "policeprecinct": 0,
+    "citycouncildistrict": 0,
+    "communitydistrict": 0,
+    "communityschooldistrict": 0,
+    "congressionaldistrict": 0
+  },
+  "category_values_with_surrounding_whitespace": {},
+  "documented_duration_reconciliation": {
+    "dispatch_response_seconds_qy": {
+      "rows_compared": 3936950,
+      "differences_over_1_second": 0,
+      "mean_absolute_difference_seconds": 0.0,
+      "maximum_absolute_difference_seconds": 0.0
+    },
+    "incident_response_seconds_qy": {
+      "rows_compared": 3773175,
+      "differences_over_1_second": 0,
+      "mean_absolute_difference_seconds": 0.0,
+      "maximum_absolute_difference_seconds": 0.0
+    },
+    "incident_travel_tm_seconds_qy": {
+      "rows_compared": 3774262,
+      "differences_over_1_second": 0,
+      "mean_absolute_difference_seconds": 0.0,
+      "maximum_absolute_difference_seconds": 0.0
+    }
+  },
+  "numeric_measures": [
+    {
+      "field": "dispatch_response_seconds_qy",
+      "valid_count": 4035659,
+      "missing_count": 0,
+      "mean": 337.5397624031168,
+      "median": 29.0,
+      "minimum": 0.0,
+      "maximum": 32390.0,
+      "variance_sample": 1748350.1667753262,
+      "stddev_sample": 1322.2519301461905,
+      "q1": 13.0,
+      "q3": 90.0,
+      "iqr": 77.0,
+      "skewness": 9.179064235457549,
+      "kurtosis_excess": 121.49785243938668,
+      "negative_count": 0,
+      "zero_count": 134767,
+      "upper_iqr_outlier_count": 657265,
+      "upper_iqr_threshold": 205.5
+    },
+    {
+      "field": "incident_response_seconds_qy",
+      "valid_count": 3773175,
+      "missing_count": 262484,
+      "mean": 976.4796318750124,
+      "median": 571.0,
+      "minimum": 0.0,
+      "maximum": 32396.0,
+      "variance_sample": 2416762.31316139,
+      "stddev_sample": 1554.5939383521954,
+      "q1": 381.0,
+      "q3": 937.0,
+      "iqr": 556.0,
+      "skewness": 7.0510400997640925,
+      "kurtosis_excess": 75.28385738010998,
+      "negative_count": 0,
+      "zero_count": 36057,
+      "upper_iqr_outlier_count": 393796,
+      "upper_iqr_threshold": 1771.0
+    },
+    {
+      "field": "incident_travel_tm_seconds_qy",
+      "valid_count": 3774262,
+      "missing_count": 261397,
+      "mean": 647.2066827899071,
+      "median": 493.0,
+      "minimum": 0.0,
+      "maximum": 90337.0,
+      "variance_sample": 513987.16195910185,
+      "stddev_sample": 716.9289797177275,
+      "q1": 332.0,
+      "q3": 741.0,
+      "iqr": 409.0,
+      "skewness": 9.932123423602109,
+      "kurtosis_excess": 252.87324808974108,
+      "negative_count": 0,
+      "zero_count": 44985,
+      "upper_iqr_outlier_count": 251995,
+      "upper_iqr_threshold": 1354.5
+    }
+  ],
+  "timing_by_validity_flag": [
+    {
+      "field": "dispatch_response_seconds_qy",
+      "validity_flag": "Y",
+      "count": 3936950,
+      "mean_seconds": 346.00271275987757,
+      "median_seconds": 31.0,
+      "minimum_seconds": 0.0,
+      "maximum_seconds": 32390.0,
+      "variance_sample": 1789257.403504853,
+      "stddev_sample": 1337.6312658968664,
+      "q1": 14.0,
+      "q3": 94.0,
+      "iqr": 80.0,
+      "skewness": 9.06980001311789,
+      "kurtosis_excess": 118.62071556933468,
+      "negative_count": 0,
+      "zero_count": 36058,
+      "upper_iqr_outlier_count": 644575,
+      "upper_iqr_threshold": 214.0
+    },
+    {
+      "field": "dispatch_response_seconds_qy",
+      "validity_flag": "N",
+      "count": 98709,
+      "mean_seconds": 0.0,
+      "median_seconds": 0.0,
+      "minimum_seconds": 0.0,
+      "maximum_seconds": 0.0,
+      "variance_sample": 0.0,
+      "stddev_sample": 0.0,
+      "q1": 0.0,
+      "q3": 0.0,
+      "iqr": 0.0,
+      "skewness": 0.0,
+      "kurtosis_excess": 0.0,
+      "negative_count": 0,
+      "zero_count": 98709,
+      "upper_iqr_outlier_count": 0,
+      "upper_iqr_threshold": 0.0
+    },
+    {
+      "field": "incident_response_seconds_qy",
+      "validity_flag": "Y",
+      "count": 3773175,
+      "mean_seconds": 976.4796318750124,
+      "median_seconds": 571.0,
+      "minimum_seconds": 0.0,
+      "maximum_seconds": 32396.0,
+      "variance_sample": 2416762.31316139,
+      "stddev_sample": 1554.5939383521954,
+      "q1": 381.0,
+      "q3": 937.0,
+      "iqr": 556.0,
+      "skewness": 7.0510400997640925,
+      "kurtosis_excess": 75.28385738010998,
+      "negative_count": 0,
+      "zero_count": 36057,
+      "upper_iqr_outlier_count": 393796,
+      "upper_iqr_threshold": 1771.0
+    }
+  ],
+  "source_codebook_checks": {
+    "initial_call_type": {
+      "unmapped_category_count": 8,
+      "unmapped_row_count": 39
+    },
+    "final_call_type": {
+      "unmapped_category_count": 0,
+      "unmapped_row_count": 0
+    },
+    "incident_disposition_code": {
+      "unmapped_category_count": 2,
+      "unmapped_row_count": 90
+    }
+  },
+  "severity_change_counts": {
+    "changed": 500882,
+    "unchanged": 3534777
+  },
+  "top_categories": {
+    "initial_call_type": [
+      {
+        "category": "INJURY",
+        "count": 489693,
+        "percent": 12.134152067853107
+      },
+      {
+        "category": "SICK",
+        "count": 433496,
+        "percent": 10.741640956284959
+      },
+      {
+        "category": "UNKNOW",
+        "count": 396968,
+        "percent": 9.836509972720688
+      },
+      {
+        "category": "CARDBR",
+        "count": 270706,
+        "percent": 6.707851183660463
+      },
+      {
+        "category": "UNC",
+        "count": 252497,
+        "percent": 6.256648542406581
+      },
+      {
+        "category": "CARD",
+        "count": 210955,
+        "percent": 5.227275148866641
+      },
+      {
+        "category": "DRUG",
+        "count": 210067,
+        "percent": 5.20527130761048
+      },
+      {
+        "category": "EDP",
+        "count": 176830,
+        "percent": 4.381688343836781
+      },
+      {
+        "category": "ABDPN",
+        "count": 172936,
+        "percent": 4.28519852643645
+      },
+      {
+        "category": "DIFFBR",
+        "count": 167386,
+        "percent": 4.147674518585441
+      },
+      {
+        "category": "EDPC",
+        "count": 166649,
+        "percent": 4.129412321506846
+      },
+      {
+        "category": "INJMAJ",
+        "count": 139622,
+        "percent": 3.4597075719231976
+      },
+      {
+        "category": "MVAINJ",
+        "count": 107626,
+        "percent": 2.6668754718869954
+      },
+      {
+        "category": "ALTMEN",
+        "count": 73761,
+        "percent": 1.8277312329906963
+      },
+      {
+        "category": "STATEP",
+        "count": 71278,
+        "percent": 1.76620472641519
+      },
+      {
+        "category": "SICMIN",
+        "count": 62958,
+        "percent": 1.5600426101412432
+      },
+      {
+        "category": "PEDSTR",
+        "count": 60397,
+        "percent": 1.496583333725669
+      },
+      {
+        "category": "ARREST",
+        "count": 54055,
+        "percent": 1.3394342782678121
+      },
+      {
+        "category": "CVAC",
+        "count": 50735,
+        "percent": 1.2571676645623429
+      },
+      {
+        "category": "OTHER",
+        "count": 49688,
+        "percent": 1.2312239463245036
+      }
+    ],
+    "final_call_type": [
+      {
+        "category": "SICK",
+        "count": 485853,
+        "percent": 12.039000321880515
+      },
+      {
+        "category": "INJURY",
+        "count": 465726,
+        "percent": 11.540271365841367
+      },
+      {
+        "category": "UNKNOW",
+        "count": 329848,
+        "percent": 8.173336746241445
+      },
+      {
+        "category": "CARDBR",
+        "count": 274467,
+        "percent": 6.8010453806924716
+      },
+      {
+        "category": "DRUG",
+        "count": 244719,
+        "percent": 6.063916698611057
+      },
+      {
+        "category": "UNC",
+        "count": 236879,
+        "percent": 5.869648550583684
+      },
+      {
+        "category": "CARD",
+        "count": 220784,
+        "percent": 5.470828927815755
+      },
+      {
+        "category": "EDPC",
+        "count": 191672,
+        "percent": 4.74945975366105
+      },
+      {
+        "category": "ABDPN",
+        "count": 174135,
+        "percent": 4.314908667952372
+      },
+      {
+        "category": "DIFFBR",
+        "count": 165006,
+        "percent": 4.088700259362845
+      },
+      {
+        "category": "INJMAJ",
+        "count": 163362,
+        "percent": 4.0479634181183295
+      },
+      {
+        "category": "MVAINJ",
+        "count": 103645,
+        "percent": 2.5682298727419735
+      },
+      {
+        "category": "EDP",
+        "count": 97391,
+        "percent": 2.4132613781293215
+      },
+      {
+        "category": "ALTMEN",
+        "count": 84143,
+        "percent": 2.084987854523883
+      },
+      {
+        "category": "STATEP",
+        "count": 73485,
+        "percent": 1.8208922012489162
+      },
+      {
+        "category": "ARREST",
+        "count": 64499,
+        "percent": 1.5982272040328482
+      },
+      {
+        "category": "PEDSTR",
+        "count": 61300,
+        "percent": 1.5189588614895362
+      },
+      {
+        "category": "SICMIN",
+        "count": 56378,
+        "percent": 1.3969961287611268
+      },
+      {
+        "category": "EDPM",
+        "count": 54610,
+        "percent": 1.353186679052913
+      },
+      {
+        "category": "OTHER",
+        "count": 46525,
+        "percent": 1.1528476513996846
+      }
+    ],
+    "initial_severity_level_code": [
+      {
+        "category": "5",
+        "count": 960324,
+        "percent": 23.79596492171415
+      },
+      {
+        "category": "2",
+        "count": 864356,
+        "percent": 21.417964203615817
+      },
+      {
+        "category": "4",
+        "count": 591909,
+        "percent": 14.666972605961009
+      },
+      {
+        "category": "3",
+        "count": 581470,
+        "percent": 14.408303575698541
+      },
+      {
+        "category": "6",
+        "count": 484863,
+        "percent": 12.014469012371958
+      },
+      {
+        "category": "7",
+        "count": 480988,
+        "percent": 11.918449997881385
+      },
+      {
+        "category": "1",
+        "count": 59464,
+        "percent": 1.473464432946391
+      },
+      {
+        "category": "8",
+        "count": 12245,
+        "percent": 0.3034200857902018
+      },
+      {
+        "category": "9",
+        "count": 40,
+        "percent": 0.0009911640205478214
+      }
+    ],
+    "final_severity_level_code": [
+      {
+        "category": "5",
+        "count": 964575,
+        "percent": 23.90130087799787
+      },
+      {
+        "category": "2",
+        "count": 851522,
+        "percent": 21.099949227623046
+      },
+      {
+        "category": "3",
+        "count": 625629,
+        "percent": 15.502523875282822
+      },
+      {
+        "category": "6",
+        "count": 534140,
+        "percent": 13.235508748385334
+      },
+      {
+        "category": "4",
+        "count": 530213,
+        "percent": 13.13820122066805
+      },
+      {
+        "category": "7",
+        "count": 448580,
+        "percent": 11.115408908433542
+      },
+      {
+        "category": "1",
+        "count": 69887,
+        "percent": 1.7317369976006396
+      },
+      {
+        "category": "8",
+        "count": 11113,
+        "percent": 0.27537014400869847
+      }
+    ],
+    "borough": [
+      {
+        "category": "BROOKLYN",
+        "count": 1114292,
+        "percent": 27.611153469606826
+      },
+      {
+        "category": "MANHATTAN",
+        "count": 970684,
+        "percent": 24.052676403036035
+      },
+      {
+        "category": "BRONX",
+        "count": 950853,
+        "percent": 23.56128206074894
+      },
+      {
+        "category": "QUEENS",
+        "count": 826436,
+        "percent": 20.478340712136482
+      },
+      {
+        "category": "RICHMOND / STATEN ISLAND",
+        "count": 173379,
+        "percent": 4.296175667964018
+      },
+      {
+        "category": "UNKNOWN",
+        "count": 15,
+        "percent": 0.00037168650770543296
+      }
+    ],
+    "incident_dispatch_area": [
+      {
+        "category": "B2",
+        "count": 282690,
+        "percent": 7.00480392421659
+      },
+      {
+        "category": "K4",
+        "count": 280481,
+        "percent": 6.950066891181837
+      },
+      {
+        "category": "Q6",
+        "count": 237318,
+        "percent": 5.8805265757091965
+      },
+      {
+        "category": "B1",
+        "count": 233147,
+        "percent": 5.777172947466572
+      },
+      {
+        "category": "Q2",
+        "count": 208896,
+        "percent": 5.176254980908942
+      },
+      {
+        "category": "B3",
+        "count": 181300,
+        "percent": 4.492450923133
+      },
+      {
+        "category": "M3",
+        "count": 178513,
+        "percent": 4.42339157000133
+      },
+      {
+        "category": "M2",
+        "count": 167697,
+        "percent": 4.1553808188452
+      },
+      {
+        "category": "K1",
+        "count": 167107,
+        "percent": 4.1407611495421195
+      },
+      {
+        "category": "K7",
+        "count": 156692,
+        "percent": 3.8826868176919804
+      },
+      {
+        "category": "K6",
+        "count": 152891,
+        "percent": 3.7885014566394237
+      },
+      {
+        "category": "K2",
+        "count": 141367,
+        "percent": 3.5029471023195966
+      },
+      {
+        "category": "B5",
+        "count": 135009,
+        "percent": 3.3454015812535203
+      },
+      {
+        "category": "M1",
+        "count": 127645,
+        "percent": 3.162928285070666
+      },
+      {
+        "category": "K3",
+        "count": 123481,
+        "percent": 3.059748110531638
+      },
+      {
+        "category": "M7",
+        "count": 118559,
+        "percent": 2.9377853778032286
+      },
+      {
+        "category": "B4",
+        "count": 118224,
+        "percent": 2.9294843791311407
+      },
+      {
+        "category": "M9",
+        "count": 110547,
+        "percent": 2.7392552244875
+      },
+      {
+        "category": "M5",
+        "count": 102498,
+        "percent": 2.5398082444527645
+      },
+      {
+        "category": "Q3",
+        "count": 97229,
+        "percent": 2.4092471638461026
+      }
+    ],
+    "incident_disposition_code": [
+      {
+        "category": "82",
+        "count": 2444628,
+        "percent": 60.57568293059449
+      },
+      {
+        "category": "93",
+        "count": 708016,
+        "percent": 17.543999629304658
+      },
+      {
+        "category": "90",
+        "count": 351809,
+        "percent": 8.717510572622713
+      },
+      {
+        "category": "96",
+        "count": 164589,
+        "percent": 4.078367374448634
+      },
+      {
+        "category": "91",
+        "count": 112161,
+        "percent": 2.779248692716605
+      },
+      {
+        "category": "CANCEL",
+        "count": 111247,
+        "percent": 2.756600594847087
+      },
+      {
+        "category": "87",
+        "count": 103795,
+        "percent": 2.5719467378190277
+      },
+      {
+        "category": "83",
+        "count": 30843,
+        "percent": 0.7642617971439113
+      },
+      {
+        "category": "94",
+        "count": 6343,
+        "percent": 0.15717383455837078
+      },
+      {
+        "category": "NOTSNT",
+        "count": 1142,
+        "percent": 0.028297732786640297
+      },
+      {
+        "category": "ZZZZZZ",
+        "count": 566,
+        "percent": 0.01402497089075167
+      },
+      {
+        "category": "95",
+        "count": 389,
+        "percent": 0.009639070099827562
+      },
+      {
+        "category": "TELC",
+        "count": 89,
+        "percent": 0.0022053399457189022
+      },
+      {
+        "category": "92",
+        "count": 41,
+        "percent": 0.0010159431210615168
+      },
+      {
+        "category": "82A",
+        "count": 1,
+        "percent": 2.4779100513695533e-05
+      }
+    ],
+    "valid_dispatch_rspns_time_indc": [
+      {
+        "category": "Y",
+        "count": 3936950,
+        "percent": 97.55407976739363
+      },
+      {
+        "category": "N",
+        "count": 98709,
+        "percent": 2.4459202326063725
+      }
+    ],
+    "valid_incident_rspns_time_indc": [
+      {
+        "category": "Y",
+        "count": 3773175,
+        "percent": 93.49588258076315
+      },
+      {
+        "category": "N",
+        "count": 262484,
+        "percent": 6.5041174192368585
+      }
+    ],
+    "held_indicator": [
+      {
+        "category": "N",
+        "count": 3173021,
+        "percent": 78.62460629106671
+      },
+      {
+        "category": "Y",
+        "count": 862638,
+        "percent": 21.375393708933288
+      }
+    ],
+    "reopen_indicator": [
+      {
+        "category": "N",
+        "count": 3968190,
+        "percent": 98.32817886744148
+      },
+      {
+        "category": "Y",
+        "count": 67469,
+        "percent": 1.671821132558524
+      }
+    ],
+    "special_event_indicator": [
+      {
+        "category": "N",
+        "count": 4035503,
+        "percent": 99.99613446031987
+      },
+      {
+        "category": "Y",
+        "count": 156,
+        "percent": 0.003865539680136503
+      }
+    ],
+    "standby_indicator": [
+      {
+        "category": "N",
+        "count": 4025806,
+        "percent": 99.75585152263857
+      },
+      {
+        "category": "Y",
+        "count": 9853,
+        "percent": 0.24414847736144207
+      }
+    ],
+    "transfer_indicator": [
+      {
+        "category": "N",
+        "count": 4035654,
+        "percent": 99.99987610449743
+      },
+      {
+        "category": "Y",
+        "count": 5,
+        "percent": 0.00012389550256847767
+      }
+    ]
+  },
+  "temporal_peak_low": {
+    "busiest_month": {
+      "month": "2024-05",
+      "incident_count": 144021
+    },
+    "quietest_month": {
+      "month": "2025-02",
+      "incident_count": 119980
+    },
+    "incidents_by_weekday": [
+      {
+        "day_of_week": "Monday",
+        "incident_count": 592381
+      },
+      {
+        "day_of_week": "Tuesday",
+        "incident_count": 585884
+      },
+      {
+        "day_of_week": "Wednesday",
+        "incident_count": 582734
+      },
+      {
+        "day_of_week": "Thursday",
+        "incident_count": 579850
+      },
+      {
+        "day_of_week": "Friday",
+        "incident_count": 592314
+      },
+      {
+        "day_of_week": "Saturday",
+        "incident_count": 558197
+      },
+      {
+        "day_of_week": "Sunday",
+        "incident_count": 544299
+      }
+    ],
+    "incidents_by_hour": [
+      {
+        "hour": 0,
+        "incident_count": 146168
+      },
+      {
+        "hour": 1,
+        "incident_count": 126611
+      },
+      {
+        "hour": 2,
+        "incident_count": 109438
+      },
+      {
+        "hour": 3,
+        "incident_count": 97078
+      },
+      {
+        "hour": 4,
+        "incident_count": 89980
+      },
+      {
+        "hour": 5,
+        "incident_count": 85662
+      },
+      {
+        "hour": 6,
+        "incident_count": 95745
+      },
+      {
+        "hour": 7,
+        "incident_count": 119062
+      },
+      {
+        "hour": 8,
+        "incident_count": 152974
+      },
+      {
+        "hour": 9,
+        "incident_count": 185637
+      },
+      {
+        "hour": 10,
+        "incident_count": 201027
+      },
+      {
+        "hour": 11,
+        "incident_count": 207979
+      },
+      {
+        "hour": 12,
+        "incident_count": 213746
+      },
+      {
+        "hour": 13,
+        "incident_count": 215243
+      },
+      {
+        "hour": 14,
+        "incident_count": 216775
+      },
+      {
+        "hour": 15,
+        "incident_count": 216674
+      },
+      {
+        "hour": 16,
+        "incident_count": 214941
+      },
+      {
+        "hour": 17,
+        "incident_count": 211774
+      },
+      {
+        "hour": 18,
+        "incident_count": 208407
+      },
+      {
+        "hour": 19,
+        "incident_count": 203159
+      },
+      {
+        "hour": 20,
+        "incident_count": 197233
+      },
+      {
+        "hour": 21,
+        "incident_count": 188677
+      },
+      {
+        "hour": 22,
+        "incident_count": 175936
+      },
+      {
+        "hour": 23,
+        "incident_count": 155733
+      }
+    ],
+    "incidents_by_quarter": [
+      {
+        "quarter": "2024Q1",
+        "incident_count": 394104
+      },
+      {
+        "quarter": "2024Q2",
+        "incident_count": 415690
+      },
+      {
+        "quarter": "2024Q3",
+        "incident_count": 414129
+      },
+      {
+        "quarter": "2024Q4",
+        "incident_count": 406524
+      },
+      {
+        "quarter": "2025Q1",
+        "incident_count": 389859
+      },
+      {
+        "quarter": "2025Q2",
+        "incident_count": 409473
+      },
+      {
+        "quarter": "2025Q3",
+        "incident_count": 413239
+      },
+      {
+        "quarter": "2025Q4",
+        "incident_count": 399702
+      },
+      {
+        "quarter": "2026Q1",
+        "incident_count": 386941
+      },
+      {
+        "quarter": "2026Q2",
+        "incident_count": 405998
+      }
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e529b272757ee3c9d52a",
+  "position": {
+    "x": 972,
+    "y": 629,
+    "z": 6000,
+    "width": 924,
+    "height": 425,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "borough_performance"
+                    }
+                  },
+                  "Property": "borough"
+                }
+              },
+              "queryRef": "borough_performance.borough",
+              "nativeQueryRef": "borough",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "borough_performance"
+                    }
+                  },
+                  "Property": "Average response (min)"
+                }
+              },
+              "queryRef": "borough_performance.Average response (min)",
+              "nativeQueryRef": "Average response (min)"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "borough_performance"
+                    }
+                  },
+                  "Property": "Valid response records"
+                }
+              },
+              "queryRef": "borough_performance.Valid response records",
+              "nativeQueryRef": "Valid response records"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "borough_performance"
+                  }
+                },
+                "Property": "Average response (min)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average incident response by borough (min)'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "21D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

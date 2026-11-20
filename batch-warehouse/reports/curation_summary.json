@@ -1,0 +1,25 @@
+{
+  "source_rows": 4035659,
+  "curated_rows": 4035659,
+  "row_count_reconciles": true,
+  "invalid_dispatch_flag_n_rows_set_to_missing": 98709,
+  "dispatch_response_blanks_before": 0,
+  "dispatch_response_blanks_after": 98709,
+  "dispatch_valid_zero_values_preserved": 36058,
+  "rows_flagged_for_timestamp_order_issue": 14941,
+  "outlier_flags_added": {
+    "dispatch_response_seconds_qy": 644575,
+    "incident_response_seconds_qy": 393796,
+    "incident_travel_tm_seconds_qy": 251995
+  },
+  "outlier_rule": "Upper Tukey fence (Q3 + 1.5*IQR); flags only. Values were retained.",
+  "raw_files_modified": false,
+  "curated_file": "data\\curated\\ems_incident_dispatch_curated_2024-01_to_2026-06.csv.gz",
+  "curated_bytes": 171760655,
+  "new_fields": [
+    "timestamp_order_issue",
+    "dispatch_response_iqr_outlier",
+    "incident_response_iqr_outlier",
+    "incident_travel_tm_iqr_outlier"
+  ]
+}

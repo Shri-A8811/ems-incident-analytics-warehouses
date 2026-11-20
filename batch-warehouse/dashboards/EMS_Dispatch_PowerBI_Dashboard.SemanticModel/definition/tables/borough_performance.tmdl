@@ -1,0 +1,86 @@
+table borough_performance
+	lineageTag: bd1f4f10-de12-447e-b9ad-1ce15fec9b8c
+
+	measure 'Total incidents' = SUM ( borough_performance[incidents] )
+		formatString: #,0
+		lineageTag: a202c102-5f31-4427-b593-9f60ac131491
+
+	measure 'Average response (min)' = DIVIDE ( SUMX ( borough_performance, borough_performance[avg_incident_response_seconds] * borough_performance[valid_incident_response_count] ), 60 * SUM ( borough_performance[valid_incident_response_count] ) )
+		formatString: 0.0
+		lineageTag: 04f41c93-2baa-4e95-a418-69a1db1239b5
+
+	measure 'Average dispatch (min)' = DIVIDE ( SUMX ( borough_performance, borough_performance[avg_dispatch_response_seconds] * borough_performance[valid_dispatch_response_count] ), 60 * SUM ( borough_performance[valid_dispatch_response_count] ) )
+		formatString: 0.0
+		lineageTag: df394ba4-dab3-471f-b925-495e644d5013
+
+	measure 'Valid response records' = SUM ( borough_performance[valid_incident_response_count] )
+		formatString: #,0
+		lineageTag: 51cba999-8d96-4e57-a185-615789372cfc
+
+	column borough
+		dataType: string
+		lineageTag: 704f1490-ee97-4014-aee2-3b74e22059a6
+		summarizeBy: none
+		sourceColumn: borough
+
+		annotation SummarizationSetBy = Automatic
+
+	column incidents
+		dataType: int64
+		formatString: 0
+		lineageTag: 61be0698-10bf-4e0a-aca3-99461a791a30
+		summarizeBy: sum
+		sourceColumn: incidents
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_incident_response_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 47cef621-3349-4917-a1b6-a1ae0b3d378a
+		summarizeBy: sum
+		sourceColumn: valid_incident_response_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_incident_response_seconds
+		dataType: double
+		lineageTag: 6a718749-4b2f-47d9-878f-74322dc38181
+		summarizeBy: sum
+		sourceColumn: avg_incident_response_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valid_dispatch_response_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 42a6cbc2-8b6c-4d20-b135-d8e75f6eb0a5
+		summarizeBy: sum
+		sourceColumn: valid_dispatch_response_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_dispatch_response_seconds
+		dataType: double
+		lineageTag: a2536e99-9bc2-45ac-a8f9-f9432f288c2d
+		summarizeBy: sum
+		sourceColumn: avg_dispatch_response_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition borough_performance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\EDA Project\dashboards\borough_performance.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"borough", type text}, {"incidents", Int64.Type}, {"valid_incident_response_count", Int64.Type}, {"avg_incident_response_seconds", type number}, {"valid_dispatch_response_count", Int64.Type}, {"avg_dispatch_response_seconds", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

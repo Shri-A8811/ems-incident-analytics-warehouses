@@ -1,0 +1,32 @@
+field_name,source_label,source_type,description
+incident_id,INCIDENT_ID,text,Source EMS incident identifier
+incident_datetime,INCIDENT_DATETIME,calendar_date,Incident creation timestamp
+initial_call_type,INITIAL_CALL_TYPE,text,Initial call classification
+initial_severity_level_code,INITIAL_SEVERITY_LEVEL_CODE,text,Initial severity code
+final_call_type,FINAL_CALL_TYPE,text,Final call classification
+final_severity_level_code,FINAL_SEVERITY_LEVEL_CODE,text,Final severity code
+first_assignment_datetime,FIRST_ASSIGNMENT_DATETIME,calendar_date,First unit assignment timestamp
+valid_dispatch_rspns_time_indc,VALID_DISPATCH_RSPNS_TIME_INDC,text,Source indicator for validity of dispatch response timing
+dispatch_response_seconds_qy,DISPATCH_RESPONSE_SECONDS_QY,number,Dispatch response duration in seconds as supplied by source
+first_activation_datetime,FIRST_ACTIVATION_DATETIME,calendar_date,First activation timestamp
+first_on_scene_datetime,FIRST_ON_SCENE_DATETIME,calendar_date,First on-scene timestamp
+valid_incident_rspns_time_indc,VALID_INCIDENT_RSPNS_TIME_INDC,text,Source indicator for validity of incident response timing
+incident_response_seconds_qy,INCIDENT_RESPONSE_SECONDS_QY,number,Incident response duration in seconds as supplied by source
+incident_travel_tm_seconds_qy,INCIDENT_TRAVEL_TM_SECONDS_QY,number,Incident travel duration in seconds as supplied by source
+first_to_hosp_datetime,FIRST_TO_HOSP_DATETIME,calendar_date,First transport-to-hospital timestamp
+first_hosp_arrival_datetime,FIRST_HOSP_ARRIVAL_DATETIME,calendar_date,First hospital arrival timestamp
+incident_close_datetime,INCIDENT_CLOSE_DATETIME,calendar_date,Incident closure timestamp
+held_indicator,HELD_INDICATOR,text,Source held-status indicator
+incident_disposition_code,INCIDENT_DISPOSITION_CODE,text,Incident disposition code
+borough,BOROUGH,text,Borough associated with the incident
+incident_dispatch_area,INCIDENT_DISPATCH_AREA,text,Aggregated incident dispatch area
+zipcode,ZIPCODE,text,ZIP code associated with the incident
+policeprecinct,POLICEPRECINCT,number,Police precinct associated with the incident
+citycouncildistrict,CITYCOUNCILDISTRICT,number,City Council district associated with the incident
+communitydistrict,COMMUNITYDISTRICT,number,Community district associated with the incident
+communityschooldistrict,COMMUNITYSCHOOLDISTRICT,number,Community school district associated with the incident
+congressionaldistrict,CONGRESSIONALDISTRICT,number,Congressional district associated with the incident
+reopen_indicator,REOPEN_INDICATOR,text,Source incident-reopened indicator
+special_event_indicator,SPECIAL_EVENT_INDICATOR,text,Source special-event indicator
+standby_indicator,STANDBY_INDICATOR,text,Source standby indicator
+transfer_indicator,TRANSFER_INDICATOR,text,Source transfer indicator

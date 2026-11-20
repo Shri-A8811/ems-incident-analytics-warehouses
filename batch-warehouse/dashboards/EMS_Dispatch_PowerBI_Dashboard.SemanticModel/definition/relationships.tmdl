@@ -1,0 +1,13 @@
+relationship AutoDetected_8e616682-97d4-4cec-b5b1-2ff107b0155f
+	fromColumn: day_hour_demand.hour_number
+	toColumn: hourly_demand.hour_number
+
+relationship AutoDetected_19ff5254-ec92-42c2-9eb8-2dd62b67b4d8
+	fromColumn: day_hour_demand.day_of_week_number
+	toColumn: weekday_demand.day_of_week_number
+
+relationship 5559f561-da63-4042-b977-30b9f1ce18f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: monthly_demand.MonthStart
+	toColumn: LocalDateTable_9429e3f4-e650-42f7-b8d6-ea45f2d91ed0.Date
+

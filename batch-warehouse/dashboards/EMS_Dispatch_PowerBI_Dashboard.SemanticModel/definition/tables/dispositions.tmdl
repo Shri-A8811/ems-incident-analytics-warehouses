@@ -1,0 +1,40 @@
+table dispositions
+	lineageTag: 71f42ed3-17f0-4ccf-93d7-8c2fe6d63a18
+
+	column disposition_code
+		dataType: string
+		lineageTag: 85d0f0b9-924c-4d13-b6d6-3db9e9d56db0
+		summarizeBy: none
+		sourceColumn: disposition_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 4488adab-bf6c-40c7-b079-6659573abff2
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column incidents
+		dataType: int64
+		formatString: 0
+		lineageTag: b15038a1-a06b-416a-978f-d6f77bb1e8f8
+		summarizeBy: sum
+		sourceColumn: incidents
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dispositions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\EDA Project\dashboards\dispositions.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"disposition_code", type text}, {"description", type text}, {"incidents", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

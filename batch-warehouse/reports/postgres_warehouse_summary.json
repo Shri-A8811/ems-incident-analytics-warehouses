@@ -1,0 +1,55 @@
+{
+  "database": "ems_dw",
+  "postgres_version": "16.15 (Debian 16.15-1.pgdg13+2)",
+  "docker_container": "ems-postgres-batch",
+  "host": "127.0.0.1",
+  "port": 5435,
+  "fact_rows": 4035659,
+  "unique_incident_ids": 4035659,
+  "dimensions": {
+    "dim_date": 915,
+    "dim_time": 86401,
+    "dim_location": 6599,
+    "dim_call_type": 155,
+    "dim_severity": 9,
+    "dim_disposition": 15
+  },
+  "detailed_location_hourly_rows": 3140801,
+  "borough_hourly_view_available": true,
+  "batch_loads": [
+    {
+      "batch_id": "initial_2024-01_to_2026-05",
+      "mode": "initial",
+      "period_start": "2024-01-01",
+      "period_end_exclusive": "2026-06-01",
+      "staged_rows": 3897232,
+      "inserted_facts": 3897232,
+      "fact_rows_after": 3897232,
+      "status": "success"
+    },
+    {
+      "batch_id": "incremental_2026-06",
+      "mode": "incremental",
+      "period_start": "2026-06-01",
+      "period_end_exclusive": "2026-07-01",
+      "staged_rows": 138427,
+      "inserted_facts": 138427,
+      "fact_rows_after": 4035659,
+      "status": "success"
+    }
+  ],
+  "verification": {
+    "initial_load_status": "success",
+    "june_incremental_status": "success",
+    "all_incident_ids_unique": true,
+    "foreign_key_orphans": 0,
+    "valid_dispatch_rows_missing_duration": 0
+  },
+  "analytical_query_timings_ms": {
+    "monthly_incident_counts": 2787.009,
+    "top_initial_call_types": 19603.741,
+    "incident_response_by_borough": 24942.758,
+    "incident_counts_by_weekday_and_hour": 25202.461,
+    "indexed_june_2026_incident_count": 234.092
+  }
+}

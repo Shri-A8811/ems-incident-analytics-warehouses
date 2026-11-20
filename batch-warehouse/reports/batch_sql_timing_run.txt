@@ -1,0 +1,108 @@
+Timing is on.
+Pager usage is off.
+ year_number | month_number | month_name | incidents 
+-------------+--------------+------------+-----------
+        2024 |            1 | January    |    137245
+        2024 |            2 | February   |    124474
+        2024 |            3 | March      |    132385
+        2024 |            4 | April      |    129362
+        2024 |            5 | May        |    144021
+        2024 |            6 | June       |    142307
+        2024 |            7 | July       |    143517
+        2024 |            8 | August     |    136708
+        2024 |            9 | September  |    133904
+        2024 |           10 | October    |    138914
+        2024 |           11 | November   |    129216
+        2024 |           12 | December   |    138394
+        2025 |            1 | January    |    137643
+        2025 |            2 | February   |    119980
+        2025 |            3 | March      |    132236
+        2025 |            4 | April      |    131781
+        2025 |            5 | May        |    137890
+        2025 |            6 | June       |    139802
+        2025 |            7 | July       |    141900
+        2025 |            8 | August     |    135610
+        2025 |            9 | September  |    135729
+        2025 |           10 | October    |    132137
+        2025 |           11 | November   |    126695
+        2025 |           12 | December   |    140870
+        2026 |            1 | January    |    131984
+        2026 |            2 | February   |    123491
+        2026 |            3 | March      |    131466
+        2026 |            4 | April      |    128922
+        2026 |            5 | May        |    138649
+        2026 |            6 | June       |    138427
+(30 rows)
+
+Time: 2787.009 ms (00:02.787)
+ source_call_type_code |        call_type_description         | incidents 
+-----------------------+--------------------------------------+-----------
+ INJURY                | INJURY - NON-CRITICAL                |    489693
+ SICK                  | SICK                                 |    433496
+ UNKNOW                | CALLER HAS NO PT MEDICAL INFO        |    396968
+ CARDBR                | DIFFICULTY BREATHING WITH CHEST PAIN |    270706
+ UNC                   | UNCONSCIOUS PATIENT                  |    252497
+ CARD                  | CARDIAC CONDITION                    |    210955
+ DRUG                  | HISTORY OF DRUG OR ALCOHOL ABUSE     |    210067
+ EDP                   | PSYCHIATRIC PATIENT                  |    176830
+ ABDPN                 | ABDOMINAL PAIN                       |    172936
+ DIFFBR                | DIFFICULTY BREATHING                 |    167386
+ EDPC                  | PSYCHIATRIC PATIENT VIOLENT/WEAPONS  |    166649
+ INJMAJ                | INJURY - MAJOR                       |    139622
+ MVAINJ                | AUTO ACCIDENT - W/ INJURIES          |    107626
+ ALTMEN                | ALTERED MENTAL STATUS                |     73761
+ STATEP                | STATUS EPILEPTICUS                   |     71278
+(15 rows)
+
+Time: 19603.741 ms (00:19.604)
+         borough          | incidents | valid_response_count | avg_incident_response_seconds 
+--------------------------+-----------+----------------------+-------------------------------
+ BROOKLYN                 |   1114292 |              1063943 |                         796.7
+ MANHATTAN                |    970684 |               883434 |                        1090.8
+ BRONX                    |    950853 |               873676 |                        1257.3
+ QUEENS                   |    826436 |               784636 |                         853.6
+ RICHMOND / STATEN ISLAND |    173379 |               167476 |                         626.4
+ UNKNOWN                  |        15 |                   10 |                         183.3
+(6 rows)
+
+Time: 24942.758 ms (00:24.943)
+ day_name  | hour_number | incidents 
+-----------+-------------+-----------
+ Tuesday   |          15 |     32936
+ Wednesday |          14 |     32656
+ Monday    |          12 |     32650
+ Monday    |          14 |     32648
+ Monday    |          15 |     32607
+ Tuesday   |          13 |     32604
+ Wednesday |          15 |     32556
+ Wednesday |          13 |     32451
+ Friday    |          15 |     32407
+ Friday    |          14 |     32387
+ Wednesday |          12 |     32334
+ Monday    |          13 |     32313
+ Tuesday   |          12 |     32287
+ Tuesday   |          16 |     32270
+ Monday    |          11 |     32257
+ Tuesday   |          14 |     32145
+ Thursday  |          14 |     32093
+ Thursday  |          13 |     32028
+ Tuesday   |          11 |     32027
+ Friday    |          16 |     32027
+(20 rows)
+
+Time: 25202.461 ms (00:25.202)
+                                                                     QUERY PLAN                                                                     
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=32919.96..32919.97 rows=1 width=8) (actual rows=1 loops=1)
+   Buffers: shared hit=4173 read=1272
+   ->  Index Only Scan using ix_fact_ems_incident_date on fact_ems_incident  (cost=0.43..32583.55 rows=134563 width=0) (actual rows=138427 loops=1)
+         Index Cond: ((incident_date_key >= 20260601) AND (incident_date_key <= 20260630))
+         Heap Fetches: 138427
+         Buffers: shared hit=4173 read=1272
+ Planning:
+   Buffers: shared hit=5
+ Planning Time: 0.134 ms
+ Execution Time: 232.962 ms
+(10 rows)
+
+Time: 234.092 ms

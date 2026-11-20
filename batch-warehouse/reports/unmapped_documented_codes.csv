@@ -1,0 +1,11 @@
+field,source_value,count
+initial_call_type,100A,14
+initial_call_type,BBP,8
+initial_call_type,MOSINJ,6
+initial_call_type,ACC,5
+initial_call_type,ADM,3
+initial_call_type,DDOA,1
+initial_call_type,MOSILL,1
+initial_call_type,STBYRS,1
+incident_disposition_code,TELC,89
+incident_disposition_code,82A,1

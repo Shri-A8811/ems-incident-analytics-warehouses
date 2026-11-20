@@ -1,0 +1,59 @@
+table top_call_types
+	lineageTag: f5be9ab6-2e44-4e79-9e65-0e818ca8141e
+
+	column source_call_type_code
+		dataType: string
+		lineageTag: be31acc5-27e1-43c9-bdfe-a64daabbfaf6
+		summarizeBy: none
+		sourceColumn: source_call_type_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: afe24acc-e208-4c04-90f4-77b6993b7857
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column incidents
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ecef65d-ccce-4732-905d-ebffaf460865
+		summarizeBy: sum
+		sourceColumn: incidents
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_response_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d40e4a0-f206-40e6-af08-1189a42ced5e
+		summarizeBy: sum
+		sourceColumn: valid_response_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_incident_response_seconds
+		dataType: double
+		lineageTag: 258753ad-47d8-4c7f-a978-f80db90d2144
+		summarizeBy: sum
+		sourceColumn: avg_incident_response_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition top_call_types = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\EDA Project\dashboards\top_call_types.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"source_call_type_code", type text}, {"description", type text}, {"incidents", Int64.Type}, {"valid_response_count", Int64.Type}, {"avg_incident_response_seconds", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

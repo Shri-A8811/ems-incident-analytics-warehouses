@@ -1,0 +1,7 @@
+﻿borough,incidents,valid_incident_response_count,avg_incident_response_seconds,valid_dispatch_response_count,avg_dispatch_response_seconds
+BROOKLYN,1114292,1063943,796.7,1104896,178.9
+MANHATTAN,970684,883434,1090.8,931736,466.8
+BRONX,950853,873676,1257.3,911628,591.9
+QUEENS,826436,784636,853.6,815936,211.9
+RICHMOND / STATEN ISLAND,173379,167476,626.4,172743,98.7
+UNKNOWN,15,10,183.3,11,2848.9

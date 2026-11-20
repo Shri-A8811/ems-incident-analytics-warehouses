@@ -1,0 +1,16 @@
+﻿disposition_code,description,incidents
+82,transporting patient,2444628
+93,refused medical aid,708016
+90,unfounded,351809
+96,patient gone on arrival,164589
+91,condition corrected,112161
+CANCEL,cancelled,111247
+87,cancelled,103795
+83,patient pronounced dead,30843
+94,treated and transported,6343
+NOTSNT,unit not sent,1142
+ZZZZZZ,no disposition,566
+95,triaged at scene no transport,389
+TELC,,89
+92,treated not transported,41
+82A,,1

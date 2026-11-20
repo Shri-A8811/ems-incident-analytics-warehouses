@@ -1,0 +1,20 @@
+{
+  "database": "D:\\EDA Project\\data\\warehouse\\ems_dispatch_dw.sqlite",
+  "source_file": "D:\\EDA Project\\data\\curated\\ems_incident_dispatch_curated_2024-01_to_2026-06.csv.gz",
+  "loaded_rows": 4035659,
+  "fact_rows": 4035659,
+  "dimension_rows": {
+    "dim_date": 913,
+    "dim_location": 6599,
+    "dim_call_type": 155,
+    "dim_severity": 9,
+    "dim_disposition": 15
+  },
+  "foreign_key_errors": 0,
+  "unique_incident_ids": 4035659,
+  "dispatch_invalid_rows": 98709,
+  "dispatch_valid_rows": 3936950,
+  "valid_dispatch_rows_missing_measure": 0,
+  "timestamp_order_issue_rows": 14941,
+  "loaded_at_utc": "2026-10-29T03:54:05+00:00"
+}

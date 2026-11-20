@@ -1,0 +1,51 @@
+table day_hour_demand
+	lineageTag: caf69fcd-8a0a-4708-ada8-561915592184
+
+	column day_of_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: d8fa5588-afdb-49cb-8dd8-dfa3b654b862
+		summarizeBy: none
+		sourceColumn: day_of_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: 212dbdf6-83f7-45d0-b230-e491432952e4
+		summarizeBy: none
+		sourceColumn: day_name
+		sortByColumn: day_of_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour_number
+		dataType: int64
+		formatString: 0
+		lineageTag: d785a57f-ba15-459a-9fce-1260ad85d58f
+		summarizeBy: none
+		sourceColumn: hour_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column incidents
+		dataType: int64
+		formatString: 0
+		lineageTag: ff94b9f7-d465-45f9-94e2-d55991364be3
+		summarizeBy: sum
+		sourceColumn: incidents
+
+		annotation SummarizationSetBy = Automatic
+
+	partition day_hour_demand = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\EDA Project\dashboards\day_hour_demand.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"day_of_week_number", Int64.Type}, {"day_name", type text}, {"hour_number", Int64.Type}, {"incidents", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

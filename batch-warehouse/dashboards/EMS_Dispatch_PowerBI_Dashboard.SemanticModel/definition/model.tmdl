@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["monthly_demand","top_call_types","borough_performance","day_hour_demand","hourly_demand","weekday_demand","dispositions","severity_transitions"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table monthly_demand
+ref table top_call_types
+ref table borough_performance
+ref table day_hour_demand
+ref table hourly_demand
+ref table weekday_demand
+ref table dispositions
+ref table severity_transitions
+ref table DateTableTemplate_8d4c7010-63a5-4fe4-a4dc-0efd3ffad58e
+ref table LocalDateTable_9429e3f4-e650-42f7-b8d6-ea45f2d91ed0
+
+ref cultureInfo en-US
+

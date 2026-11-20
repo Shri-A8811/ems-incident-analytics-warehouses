@@ -1,0 +1,33 @@
+table hourly_demand
+	lineageTag: 3a0249aa-8cda-4db6-95c8-bbe4afb7caa7
+
+	column hour_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e5f7bc8-0a82-41d3-9ebd-f179317147ee
+		summarizeBy: none
+		sourceColumn: hour_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column incidents
+		dataType: int64
+		formatString: 0
+		lineageTag: 31166b73-c50d-4766-94f9-e810d8b13289
+		summarizeBy: none
+		sourceColumn: incidents
+
+		annotation SummarizationSetBy = Automatic
+
+	partition hourly_demand = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\EDA Project\dashboards\hourly_demand.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hour_number", Int64.Type}, {"incidents", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
