@@ -1,0 +1,359 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": false,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ems-clickhouse"
+      },
+      "description": "All distinct incidents, including records with invalid or missing response durations.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ems-clickhouse"
+          },
+          "editorType": "sql",
+          "format": 0,
+          "queryType": "time series",
+          "rawSql": "SELECT toDateTime(event_date) AS time, count() AS incidents FROM ems.fact_incident FINAL WHERE $__timeFilter(event_date) GROUP BY time ORDER BY time",
+          "refId": "A"
+        }
+      ],
+      "title": "Incident volume by event date",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ems-clickhouse"
+      },
+      "description": "Only source-flagged valid and nonnegative durations enter each average. Counts show the denominator used.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_dispatch_seconds"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_incident_response_seconds"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 16,
+        "x": 0,
+        "y": 17
+      },
+      "id": 2,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "borough"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ems-clickhouse"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "queryType": "table",
+          "rawSql": "SELECT borough, count() AS incident_count, countIf(dispatch_usable) AS valid_dispatch_count, round(avgIf(dispatch_seconds, dispatch_usable), 1) AS avg_dispatch_seconds, countIf(incident_response_usable) AS valid_incident_response_count, round(avgIf(incident_response_seconds, incident_response_usable), 1) AS avg_incident_response_seconds FROM ems.fact_incident FINAL WHERE $__timeFilter(event_date) GROUP BY borough ORDER BY borough",
+          "refId": "A"
+        }
+      ],
+      "title": "Response times by borough (seconds and valid denominator)",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ems-clickhouse"
+      },
+      "description": "Rows are grouped by initial call type while showing initial and final types side by side.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 17
+      },
+      "id": 3,
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ems-clickhouse"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "queryType": "table",
+          "rawSql": "SELECT initial_call_type, final_call_type, count() AS incidents, countIf(dispatch_usable) AS valid_dispatch_count, round(avgIf(dispatch_seconds, dispatch_usable), 1) AS avg_dispatch_seconds, countIf(incident_response_usable) AS valid_incident_response_count, round(avgIf(incident_response_seconds, incident_response_usable), 1) AS avg_incident_response_seconds FROM ems.fact_incident FINAL WHERE $__timeFilter(event_date) GROUP BY initial_call_type, final_call_type ORDER BY incidents DESC LIMIT 25",
+          "refId": "A"
+        }
+      ],
+      "title": "Incident and response summary by call type",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ems-clickhouse"
+      },
+      "description": "Most recent stream ingestion timestamp; incident_datetime remains the source event time.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 30
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 27
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ems-clickhouse"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "queryType": "table",
+          "rawSql": "SELECT dateDiff('second', max(ingested_at), now()) AS seconds_since_ingest FROM ems.fact_incident FINAL",
+          "refId": "A"
+        }
+      ],
+      "title": "Seconds since latest ingestion",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ems-clickhouse"
+      },
+      "description": "Invalid or missing durations remain in incident volume but are excluded from averages.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 16,
+        "x": 8,
+        "y": 27
+      },
+      "id": 5,
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ems-clickhouse"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "queryType": "table",
+          "rawSql": "SELECT count() AS incidents, countIf(dispatch_usable) AS valid_dispatch, countIf(NOT dispatch_usable) AS invalid_or_missing_dispatch, countIf(incident_response_usable) AS valid_incident_response, countIf(NOT incident_response_usable) AS invalid_or_missing_incident_response, countIf(travel_usable) AS valid_travel, countIf(NOT travel_usable) AS invalid_or_missing_travel, countIf(NOT timestamp_order_ok) AS timestamp_order_issues FROM ems.fact_incident FINAL",
+          "refId": "A"
+        }
+      ],
+      "title": "Validity and data quality",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ems-clickhouse"
+      },
+      "description": "Monthly averages use only source-valid, nonnegative measurements. Matching counts show each denominator.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valid_dispatch_count"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "valid_incident_response_count"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ems-clickhouse"
+          },
+          "editorType": "sql",
+          "format": 0,
+          "queryType": "time series",
+          "rawSql": "SELECT toDateTime(toStartOfMonth(event_date)) AS time, countIf(dispatch_usable) AS valid_dispatch_count, avgIf(dispatch_seconds, dispatch_usable) AS avg_dispatch_seconds, countIf(incident_response_usable) AS valid_incident_response_count, avgIf(incident_response_seconds, incident_response_usable) AS avg_incident_response_seconds FROM ems.fact_incident FINAL WHERE $__timeFilter(event_date) GROUP BY time ORDER BY time",
+          "refId": "A"
+        }
+      ],
+      "title": "Dispatch and incident response averages by month",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 41,
+  "tags": [
+    "EMS",
+    "streaming"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2000-01-01T00:00:00.000Z",
+    "to": "2030-01-01T00:00:00.000Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "EMS Realtime Incident Dashboard",
+  "uid": "ems-realtime",
+  "version": 2
+}
